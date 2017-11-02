@@ -38,14 +38,14 @@ public class TranslatorEndpointTest {
 	@Test
 	public void testSendAndReceive() {
 		GetTranslationRequest request = new GetTranslationRequest();
-		request.setLangFrom("en");
-		request.setLangTo("es");
-		request.setText("This is a test of translation service");
+		request.setLangFrom("de");
+		request.setLangTo("en");
+		request.setText("Dies ist ein test übersetzungservice");
 		Object response = new WebServiceTemplate(marshaller).marshalSendAndReceive("http://localhost:"
 				+ port + "/ws", request);
 		assertNotNull(response);
 		assertThat(response, instanceOf(GetTranslationResponse.class));
 		GetTranslationResponse translation = (GetTranslationResponse) response;
-		assertThat(translation.getTranslation(), is("Esto es una prueba de servicio de traducción"));
+		assertThat(translation.getTranslation(), is("This is a test translation service"));
 	}	
 }
